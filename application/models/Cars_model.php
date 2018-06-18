@@ -12,6 +12,12 @@ class Cars_model extends CI_Model
         $this->db->insert('Cars', $insert);
     }
 
+    public function putCar($id)
+    {
+        return $this->db->where('id_car', $id)
+                        ->delete('Cars');
+    }
+
     public function getCar($id)
     {
         return $this->db->where('id_car', $id)

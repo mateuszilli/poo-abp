@@ -9,11 +9,21 @@ class Cars extends CI_Controller
         $this->load->model('Cars_model');
     }
 
+    public function index()
+    {
+        $data['page'] = 'Cars/index';
+        $this->load->view('interface', $data);
+    }
+
     public function setCar()
 	{
         $post = $this->rest->post();
-
         $this->Cars_model->setCar($post);
+    }
+
+    public function putCar($id)
+    {
+        $this->Cars_model->putCar($id);
     }
     
     public function getCar($id)
