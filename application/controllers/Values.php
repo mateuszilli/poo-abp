@@ -17,6 +17,9 @@ class Values extends CI_Controller
         $post = $this->rest->post();
         $arq = $_FILES;
 
+        print_r($post);
+        print_r($arq);
+        exit;
         $file = new DomDocument();
         $file->load($arq);
         $lines = $file->getElementsByTagName('Row');

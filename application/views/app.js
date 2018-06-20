@@ -1,8 +1,9 @@
-var app = angular.module("app", []);
+var app = angular.module("app", ["ngFileUpload"]);
 
-app.controller('carsControllers', function($scope, $http) {
+app.controller('carsControllers', function($scope, $http, Upload) {
     $scope.car = {};
     $scope.cars = {};
+    $scope.arq = {};
 
     $scope.setCar = function() {
         $http.post("Cars/setCar", $scope.car)
@@ -17,6 +18,16 @@ app.controller('carsControllers', function($scope, $http) {
             $scope.getCars();
         }); 
     };
+
+    $scope.setValues = function() {
+        console.log($scope.arq);
+        if ($scope.arq) {
+            Upload.upload({
+                url: 'Values/setValues',
+                data: {file: $scope.arq}
+            });
+        }
+    }
 
     $scope.getCars = function() {
         $http.get("Cars/getCars")
