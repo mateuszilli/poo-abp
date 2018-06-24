@@ -1,4 +1,4 @@
-<div ng-app="app" ng-controller="carsControllers" ng-cloak>
+<div ng-controller="carsController">
     <div class="row">
         <div class="col-sm-10">
             <input type="text" class="form-control" ng-model="car.name_car">
@@ -21,8 +21,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="c in cars">
-                        <td>{{c.id_car}}</td>
+                    <tr ng-repeat="(k, c) in cars">
+                        <td>{{k+1}}</td>
                         <td>{{c.name_car}}</td>   
                         <td class="text-center">
                             <button class="btn btn-danger" ng-click="putCar(c.id_car)">
@@ -30,7 +30,7 @@
                             </button>
                         </td>
                         <td class="text-center">
-                            <button class="btn btn-default" data-toggle="modal" data-target="#myModal">
+                            <button class="btn btn-default" ng-click="modalFile(c.id_car)">
                                 <i class="fa fa-file"></i>
                             </button>
                         </td>
@@ -40,7 +40,7 @@
         </div>
     </div>
 
-  <div class="modal" id="myModal">
+  <div class="modal" id="modalFile">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -49,8 +49,15 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-sm-12">
-              <input type="file" class="form-control-file" ngf-select ng-model="arq">
+            <div class="col-sm-12 form-group">
+              <label>Descrição</label>
+              <input type="text" class="form-control" ng-model="import.description">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 form-group">
+              <label>Arquivo</label>
+              <input type="file" class="form-control-file" file-model="file">
             </div>
           </div>
         </div>
