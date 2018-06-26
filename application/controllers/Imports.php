@@ -51,4 +51,11 @@ class Imports extends CI_Controller
             }
         }     
     }
+
+    public function getImports($id_car) 
+    {
+        $this->rest->response(
+            $this->Imports_model->getImports($id_car)
+        );
+    }
 }

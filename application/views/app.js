@@ -46,9 +46,12 @@ app.controller('carsController', function($scope, $http) {
 });
 
 app.controller('reportsController', function($scope, $http) {
-    $scope.graph = function(objGraph) {
-        console.log(objGraph.series);
-        
+    $scope.cars = {};
+    $scope.imports = {};
+    $scope.filter = {};
+    $scope.sensors = {};
+
+    $scope.graph = function(objGraph) {   
         Highcharts.chart(objGraph.id, {
             chart: {
                 type: 'line'
@@ -90,13 +93,48 @@ app.controller('reportsController', function($scope, $http) {
         });
     };
 
-    $scope.getReports = function() {
-        $http.get("Reports/getReports")
+    $scope.modalGraph = function(id_import, id_sensor) {
+        $http.get("Reports/getReportsDetailed/"+id_import+"/"+id_sensor)
         .then(function(response) {
-            var obj = response.data
-            $scope.graph(obj);
+            $scope.graph(response.data);
+            $("#modalGraph").modal();
+        });
+    }
+
+    $scope.getReportsAbstract = function(id_import) {
+        $http.get("Reports/getReportsAbstract/"+id_import)
+        .then(function(response) {
+            $scope.graph(response.data);
         });
     };
 
-    $scope.getReports();
+    $scope.getReportsSensors = function(id_import) {
+        $http.get("Reports/getReportsSensors/"+id_import)
+        .then(function(response) {
+            $scope.sensors = response.data;
+        });
+    }
+
+    $scope.getReportsDetailed = function(id_import) {
+        $http.get("Reports/getReportsDetailed/"+id_import)
+        .then(function(response) {
+            $scope.graph(response.data);
+        });
+    }
+
+    $scope.getCars = function() {
+        $http.get("Cars/getCars")
+        .then(function(response) {
+            $scope.cars = response.data;
+        });
+    };
+
+    $scope.getImports = function(id_car) {
+        $http.get("Imports/getImports/"+id_car)
+        .then(function(response) {
+            $scope.imports = response.data;
+        });
+    };
+
+    $scope.getCars();
 });
