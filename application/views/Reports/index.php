@@ -9,6 +9,8 @@
                     ng-change="getImports(filter.id_car);">
                     <option value="" disabled selected>Informe o carro</option>
                 </select>
+            </div>
+            <div class="form-group">
                 <select id="imports" 
                     class="form-control"
                     ng-options="import.id_import as import.description for import in imports track by import.id_import"
@@ -26,19 +28,22 @@
     </div>
     <div class="row" ng-show="sensors.length > 0">
         <div class="col-sm-12">
-            <table class="table table-dark">
+            <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th width="90%">Sensores</th>
+                        <th width="10%" class="text-center">#</th>
+                        <th width="80%">Nome do sensor</th>
                         <th width="10%" class="text-center"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="sensor in sensors">
+                    <tr ng-repeat="(k, sensor) in sensors">
+                        <td class="text-center">{{k+1}}</td>
                         <td>{{sensor.name_sensor}}</td>
-                        <td>
-                            <button class="btn btn-primary" 
-                                ng-click="modalGraph(filter.id_import, sensor.id_sensor)">Gráfico
+                        <td class="text-center">
+                            <button class="btn btn-primary btn-lg" 
+                                ng-click="modalGraph(filter.id_import, sensor.id_sensor)">
+                                <i class="glyphicon glyphicon-signal"></i>
                             </button>
                         </td>
                     </tr>

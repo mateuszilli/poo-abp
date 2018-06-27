@@ -5,16 +5,16 @@
         </div>
         <div class="col-sm-2">
             <button class="btn btn-primary form-control" ng-click="setCar()">
-                <i class="fa fa-plus"></i> Adicionar
+                <i class="glyphicon glyphicon-plus"></i> Adicionar
             </button>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-12">
             <table class="table table-hover">
-                <thead class="thead-dark">
+                <thead>
                     <tr>
-                        <th>Código</th>
+                        <th width="10%" class="text-center">#</th>
                         <th>Carro</th>
                         <th width="10%" class="text-center">Excluir</th>
                         <th width="10%" class="text-center">Importar</th>
@@ -22,16 +22,16 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="(k, c) in cars">
-                        <td>{{k+1}}</td>
+                        <td class="text-center">{{k+1}}</td>
                         <td>{{c.name_car}}</td>   
                         <td class="text-center">
-                            <button class="btn btn-danger" ng-click="putCar(c.id_car)">
-                                <i class="fa fa-trash"></i>
+                            <button class="btn btn-lg btn-danger" ng-click="putCar(c.id_car)">
+                                <i class="glyphicon glyphicon-trash"></i>
                             </button>
                         </td>
                         <td class="text-center">
-                            <button class="btn btn-default" ng-click="modalFile(c.id_car)">
-                                <i class="fa fa-file"></i>
+                            <button class="btn btn-lg btn-default text-center" ng-click="modalFile(c.id_car)">
+                                <i class="glyphicon glyphicon-file"></i>
                             </button>
                         </td>
                     </tr>
